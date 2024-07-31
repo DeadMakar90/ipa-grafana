@@ -1,0 +1,2 @@
+- name: ipa init
+  shell: astra-freeipa-client -d test.local -p 7895123_new -y 

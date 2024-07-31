@@ -1,0 +1,6 @@
+- name: ipa init
+  shell: astra-freeipa-server -n dc01 -d test.local -p 7895123_new -o --ssl -ip 192.168.56.3 -y 
+
+- name: reboot
+  reboot:
+  

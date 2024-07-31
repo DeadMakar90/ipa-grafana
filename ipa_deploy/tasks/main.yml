@@ -1,0 +1,4 @@
+---
+- include_tasks: ipa_install.yml
+- include_tasks: ipa_init.yml
+

@@ -1,0 +1,4 @@
+- hosts: monitor
+  become: true
+  roles:
+    - monitor

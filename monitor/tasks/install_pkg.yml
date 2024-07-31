@@ -1,0 +1,28 @@
+- name: repo add
+  template:
+    src: sources.list.j2
+    dest: /etc/apt/sources.list
+
+- name: update
+  apt:
+    update_cache: yes
+    name: "*"
+    state: latest
+
+- name: install pkg
+  apt: 
+    pkg: "{{pkg}}"
+    state: present
+
+- name: config hosts
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+
+- name: Create resolv.conf
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    mode: "0644"
+    force: true
+

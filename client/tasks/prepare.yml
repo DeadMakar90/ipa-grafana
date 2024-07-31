@@ -1,0 +1,12 @@
+- name: install pkg
+  apt:
+    pkg:
+      - htop
+      - mc
+      - bash-completion
+      - firefox
+
+- name: install freeipa
+  shell: sudo DEBIAN_FRONTEND=noninteractive apt install -y astra-freeipa-client
+
+

@@ -1,0 +1,8 @@
+---
+pkg:
+      - mc
+      - htop
+      - bash-completion
+      - astra-freeipa-client
+      - prometheus
+      - grafana

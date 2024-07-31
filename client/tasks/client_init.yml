@@ -1,0 +1,48 @@
+- name: config hosts
+  template:
+    src: templates/hosts.j2
+    dest: /etc/
+    
+- name: make sure line 'dns=none' is set in /etc/NetworkManager/NetworkManager.conf
+  ini_file:
+    path: /etc/NetworkManager/NetworkManager.conf
+    state: present
+    no_extra_spaces: yes
+    section: main
+    option: dns
+    value: none
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: rc-manager disable
+  ini_file:
+    path: /etc/NetworkManager/NetworkManager.conf
+    state: present
+    no_extra_spaces: yes
+    section: main
+    option: rc-manager
+    value: unmanaged
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: NM restart
+  service:
+    name: NetworkManager
+    state: restarted
+    
+- name: Create resolv.conf
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    mode: "0644"
+    force: true
+
+- name: ipa init
+  shell: astra-freeipa-client -d test.local -p 7895123_new -y 
+
+- name: reboot
+  reboot: 

@@ -1,0 +1,35 @@
+- name: repo add
+  template:
+    src: sources.list.j2
+    dest: /etc/apt/sources.list
+    
+- name: update 
+  apt:
+    update_cache: yes
+    name: "*"
+    state: latest
+
+- name: install pkg
+  apt:
+    pkg:
+      - htop
+      - mc
+      - bash-completion
+      - firefox
+      - prometheus-node-exporter
+
+- name: install freeipa
+  shell: DEBIAN_FRONTEND=noninteractive apt install -y astra-freeipa-server
+
+- name: config hosts
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+
+- name: Create resolv.conf
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    mode: "0644"
+    force: true
+

@@ -1,0 +1,6 @@
+---
+# handlers file for client
+- name: reload NetworkManager
+  service:
+    name: NetworkManager
+    state: reloaded

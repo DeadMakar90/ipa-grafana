@@ -1,0 +1,4 @@
+- hosts: ipa_master
+  become: true
+  roles:
+    - ipa_deploy
